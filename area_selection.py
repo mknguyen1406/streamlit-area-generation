@@ -6,11 +6,31 @@ import numpy as np
 import pandas as pd
 
 import boto3
+import requests
+import json
 
 from sklearn.impute import SimpleImputer
 
 from settings import *
-from secrets import *
+
+# get AWS S3 credentials
+@st.cache
+def get_aws_s3_credentials(url):
+
+    r = requests.get(url)
+    res = json.loads(r.text)
+
+    access_id = res["access_id"]
+    access_key = res["access_key"]
+    region_name = res["region_name"]
+    bucket_name = res["bucket_name"]
+
+    return access_id, access_key, region_name, bucket_name
+
+url = "https://prod-27.westus.logic.azure.com:443/workflows/e0fa0a5ff60f4bf9a418fe6a31585555/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TDsIHvNfH-L-e7kCpQ5NfBgKQ_V-Ti-QuNPUQSYb3gc"
+
+access_id, access_key, region_name, bucket_name = get_aws_s3_credentials(url)
+
 
 ###########################################################################################
 #################################### Area Selection #######################################
@@ -21,11 +41,6 @@ st.markdown('# Area Selection')
 
 #####################################################################################
 st.markdown('## 1. Load data')
-
-access_id = "AKIA2GH5ONBVBJTO4L7M"
-access_key = "7VkVI6CLrndr0hvCUKoc0iordLZmrbcMzA/cQFYJ"
-region_name = "eu-west-2"
-bucket_name = "area-selection-data-storage"
 
 @st.cache
 def load_data(path):
