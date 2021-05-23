@@ -182,7 +182,14 @@ regression_coefficients = {
 }
 
 st.write("Coefficients for linear regression:")
-st.write(pd.DataFrame(regression_coefficients, columns=["Variable", "Coefficient"]))
+st.write(
+    pd.DataFrame(
+        {
+            "Variable": list(regression_coefficients.keys()),
+            "Coefficient": list(regression_coefficients.values())
+        }
+    )
+)
 
 # run regression
 @st.cache
