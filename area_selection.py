@@ -44,7 +44,7 @@ st.markdown('## 1. Load data')
 
 @st.cache
 def load_data(path):
-    return pd.read_csv(path, sep=",")
+    return pd.read_csv(path, sep=";")
 
 # read file from S3
 @st.cache
