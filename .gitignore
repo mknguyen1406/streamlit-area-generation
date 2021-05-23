@@ -6,3 +6,6 @@ __pycache__
 
 # VSC settings
 settings.json
+
+# app.py
+app.py
