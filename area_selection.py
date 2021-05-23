@@ -75,7 +75,7 @@ def read_file_from_s3(access_id, access_key, region_name, bucket_name, file):
     # load data
     if status == 200:
         print(f"Successful S3 get_object response. Status - {status}")
-        df = pd.read_csv(response.get("Body"))
+        df = pd.read_csv(response.get("Body"), sep=";")
         print(df.head())
     else:
         print(f"Unsuccessful S3 get_object response. Status - {status}")
