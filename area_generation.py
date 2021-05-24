@@ -352,7 +352,7 @@ threshold_radius = st.slider(
 )
 st.write("Please select a threshold for the minumum number of properties per kilometer for clusters to be added as spokes to the hubs. All remaining postcodes are outliers which won't be considered in the area selection.")
 threshold_min_prop_km = st.slider(
-    label='Minimum properties per KM',
+    label='Minimum properties per KM as Backhaul',
     min_value=0, 
     max_value=100, 
     value=2,
