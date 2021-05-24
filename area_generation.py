@@ -114,6 +114,7 @@ Filters to be applied:
 * Download speed availability NOT `>= 300 Mbit/s`
 * `Properties` > 0
 * NOT `FFE Area`
+* `thinkpoint_cable_postcode` NOT `'Y'`
 """)
 
 # filter rows
@@ -124,7 +125,8 @@ def filter_rows(df, bt_fibre_first, not_urban, not_speed, min_property, ffe):
         (df["Rural or Urban"] != not_urban) &
         (df["Download speed availability"] != not_speed) &
         (df["Properties"] > min_property) &
-        (df["FFE"] == ffe)
+        (df["FFE"] == ffe) &
+        (df["thinkpoint_cable_postcode"] != "Y")
     ]
     return df_filtered_rows
 
