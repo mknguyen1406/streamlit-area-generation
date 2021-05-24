@@ -347,7 +347,7 @@ threshold_radius = st.slider(
     label='Threshold radius [KM]',
     min_value=0, 
     max_value=20, 
-    value=5,
+    value=10,
     step=1,
 )
 st.write("Please select a threshold for the minumum number of properties per kilometer for clusters to be added as spokes to the hubs. All remaining postcodes are outliers which won't be considered in the area selection.")
